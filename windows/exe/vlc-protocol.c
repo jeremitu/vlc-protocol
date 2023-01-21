@@ -41,10 +41,12 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
   wcscat(path, L"\\vlc.exe");
 
   // Assemble arguments
-  wchar_t *args = malloc(sizeof(wchar_t)*(wcslen(encoded_url)+20));
-  wcscpy(args, L"--open \"");
+  wchar_t *args = malloc(sizeof(wchar_t)*(wcslen(encoded_url)+100));
+  //wcscpy(args, L"--open \"");
+  wcscpy(args, L"\"");
   wcscat(args, encoded_url);
   wcscat(args, L"\"");
+  wcscat(args, L" --started-from-file --fullscreen");
 
   // Start vlc.exe
   int ret = (INT_PTR) ShellExecute(NULL, NULL, path, args, NULL, SW_SHOWNORMAL);
